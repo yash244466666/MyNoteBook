@@ -1,16 +1,16 @@
 const connectToMongo = require('./db');
 const express = require('express')
 var cors = require('cors') 
-// require MongoDB, Express, and Cors
-connectToMongo(); // connect to MongoDB 
-const app = express() // create an instance of Express
+
+connectToMongo(); 
+const app = express() 
 const port = 5000
 
-app.use(cors())
-app.use(express.json())
+app.use(cors())// to allow cross-origin requests
+app.use(express.json())  // to recognize the incoming Request Object as a JSON Object.
 
-app.use('/api/auth', require('./routes/auth')) //defines a route /api/auth and delegates the handling of requests to the auth route module
-app.use('/api/notes', require('./routes/notes')) //defines a route /api/notes and delegates the handling of requests to the notes route module,
+app.use('/api/auth', require('./routes/auth')) // linking the routes
+app.use('/api/notes', require('./routes/notes'))//  linking the routes
 
 
 app.listen(port, () => { // starts the application

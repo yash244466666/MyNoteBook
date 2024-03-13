@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
-// the structure of the note
-const NotesSchema = new Schema({
+const mongoose = require('mongoose');//importing mongoose
+const { Schema } = mongoose;//importing Schema from mongoose
+
+const NotesSchema = new Schema({//creating a schema for notes
     user:{
-        type: mongoose.Schema.Types.ObjectId, // setting up type
-        ref: 'user' // setting up reference
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'user' 
     },
     title:{
         type: String, 

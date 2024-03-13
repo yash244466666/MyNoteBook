@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
-// the structure of Schema
-const UserSchema = new Schema({
+const mongoose = require('mongoose');//importing mongoose
+const { Schema } = mongoose;//importing Schema from mongoose
+
+const UserSchema = new Schema({//creating a schema for user
     name:{
         type: String,
         required: true

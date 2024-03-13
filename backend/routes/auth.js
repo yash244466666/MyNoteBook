@@ -1,14 +1,14 @@
-const express = require('express');
-const User = require('../models/User');
-const router = express.Router();
-const { body, validationResult } = require('express-validator');
-const bcrypt = require('bcryptjs');
-var jwt = require('jsonwebtoken');
-var fetchuser = require('../middleware/fetchuser');
+const express = require('express');//importing express
+const User = require('../models/User');//importing User model
+const router = express.Router();//using express router
+const { body, validationResult } = require('express-validator');//importing express-validator
+const bcrypt = require('bcryptjs');//importing bcrypt
+var jwt = require('jsonwebtoken');//importing jwt
+var fetchuser = require('../middleware/fetchuser');//importing fetchuser middleware
 
-const JWT_SECRET = '5e5510n-5ecre7-key';
+const JWT_SECRET = '5e5510n-5ecre7-key';//secret key for jwt
 
-router.post('/createuser', [
+router.post('/createuser', [//route for creating a user
   body('name', 'Enter a valid name').isLength({ min: 3 }),
   body('email', 'Enter a valid email').isEmail(),
   body('password', 'Password must be atleast 5 characters').isLength({ min: 5 }),
@@ -47,7 +47,7 @@ router.post('/createuser', [
 })
 
 
-router.post('/login', [
+router.post('/login', [//route for login
   body('email', 'Enter a valid email').isEmail(),
   body('password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
@@ -89,7 +89,7 @@ router.post('/login', [
 });
 
 
-router.post('/getuser', fetchuser,  async (req, res) => {
+router.post('/getuser', fetchuser,  async (req, res) => {//route for getting user details
   try {
     userId = req.user.id;
     const user = await User.findById(userId).select("-password")

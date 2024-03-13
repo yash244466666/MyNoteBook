@@ -4,7 +4,7 @@ const fetchuser = require('../middleware/fetchuser');
 const Note = require('../models/Note');
 const { body, validationResult } = require('express-validator');
 
-router.get('/fetchallnotes', fetchuser, async (req, res) => {
+router.get('/fetchallnotes', fetchuser, async (req, res) => {//route for fetching all notes
     try {
         const notes = await Note.find({ user: req.user.id });
         res.json(notes)
@@ -14,7 +14,7 @@ router.get('/fetchallnotes', fetchuser, async (req, res) => {
     }
 })
 
-router.post('/addnote', fetchuser, [
+router.post('/addnote', fetchuser, [//route for adding a note
     body('title', 'Enter a valid title').isLength({ min: 3 }),
     body('description', 'Description must be atleast 5 characters').isLength({ min: 5 }),], async (req, res) => {
         try {
@@ -37,7 +37,7 @@ router.post('/addnote', fetchuser, [
         }
     })
 
-router.put('/updatenote/:id', fetchuser, async (req, res) => {
+router.put('/updatenote/:id', fetchuser, async (req, res) => {//route for updating a note
     const { title, description, tag } = req.body;
     try {
         const newNote = {};
@@ -59,7 +59,7 @@ router.put('/updatenote/:id', fetchuser, async (req, res) => {
     }
 })
 
-router.delete('/deletenote/:id', fetchuser, async (req, res) => {
+router.delete('/deletenote/:id', fetchuser, async (req, res) => {//route for deleting a note
     try {
         let note = await Note.findById(req.params.id);
         if (!note) { return res.status(404).send("Not Found") }
