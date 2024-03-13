@@ -5,12 +5,7 @@ import AddNote from './AddNote';
 
 const Notes = () => {
     const context = useContext(noteContext);
-    const { notes, getNotes, editNote } = context;
-    //  remember we export 
-     //  <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
-     //  {props.children}
-     //  </NoteContext.Provider>
-     // in the ../context/notes/NoteState.js 
+    const { notes, getNotes, editNote } = context;//useContext is a react hook that is used to consume the context
     useEffect(() => {
         getNotes()
         // eslint-disable-next-line
@@ -19,12 +14,12 @@ const Notes = () => {
     const refClose = useRef(null)
     const [note, setNote] = useState({id: "", etitle: "", edescription: "", etag: ""})
 
-    const updateNote = (currentNote) => { //update information 
+    const updateNote = (currentNote) => { // updates the note
         ref.current.click();
         setNote({id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag:currentNote.tag})
     }
 
-    const handleClick = (e)=>{  // handle an event
+    const handleClick = (e)=>{  // function to handle the click event
         editNote(note.id, note.etitle, note.edescription, note.etag)
         refClose.current.click();
     }

@@ -3,18 +3,18 @@ import { useHistory } from 'react-router-dom'
 // import necessary packages
 
 const Login = (props) => {
-    const [credentials, setCredentials] = useState({email: "", password: ""}) // set a template of the user's login credential information: email and password
+    const [credentials, setCredentials] = useState({email: "", password: ""}) // setting up the state for the user's credentials
     let history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // getting data from the backend
-        const response = await fetch("http://localhost:5000/api/auth/login", { // recall: app.use('/api/auth', require('./routes/auth'))
+        const response = await fetch("http://localhost:5000/api/auth/login", { // fetching the data from the backend
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email: credentials.email, password: credentials.password}) // setting up values obtained from the user's form
+            body: JSON.stringify({email: credentials.email, password: credentials.password}) // sending the user's credentials to the backend
         });
         const json = await response.json()
         // const response = ...

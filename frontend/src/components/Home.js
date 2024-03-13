@@ -1,6 +1,6 @@
 import Notes from './Notes';
 
-export const Home = () => { // the home page
+export const Home = () => {//Home component
 
     return (
         <div> 

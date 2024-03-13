@@ -2,27 +2,21 @@ import React, {useContext, useState} from 'react'
 import noteContext from "../context/notes/noteContext"
 // import necessary packages 
 const AddNote = () => {
-    const context = useContext(noteContext); //This line uses the useContext hook to access the context object named noteContext.
-    const {addNote} = context; //This line destructures the addNote function from the context object obtained in the previous step.
-    // {addNote} allows the component to access the addNote function from the noteContext
-    //  because we export 
-     //  <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
-     //  {props.children}
-     //  </NoteContext.Provider>
-     // in the ../context/notes/NoteState.js
+    const context = useContext(noteContext); //useContext is a react hook that is used to consume the context
+    const {addNote} = context; 
     const [note, setNote] = useState({title: "", description: "", tag: ""})
-    // initialize a template of the note
-    const handleClick = (e)=>{
-        e.preventDefault(); // prevent form default 
-        addNote(note.title, note.description, note.tag); // add a note that contains new information 
-        setNote({title: "", description: "", tag: ""}) // set note to default value after adding a new one 
+   
+    const handleClick = (e)=>{//function to handle the click event
+        e.preventDefault();//prevents the default action of the form
+        addNote(note.title, note.description, note.tag); //calls the addNote function from the context
+        setNote({title: "", description: "", tag: ""}) //sets the note to empty
     }
 
-    const onChange = (e)=>{
+    const onChange = (e)=>{//function to handle the change event
         setNote({...note, [e.target.name]: e.target.value})
     }
     return (
-        // provide a form that asks the user to input information about the form they want to submit 
+        
         <div className="container my-3">
             <h2>Add a Note</h2>
             <form className="my-3">

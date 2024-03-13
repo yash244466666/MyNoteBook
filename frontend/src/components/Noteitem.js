@@ -4,13 +4,8 @@ import noteContext from "../context/notes/noteContext"
 
 const Noteitem = (props) => {
     const context = useContext(noteContext);
-    const { deleteNote } = context; // deconstructure to include deleteNote
-    const { note, updateNote } = props; // deconstructure to include note and updateNote
-    //  remember we export 
-     //  <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
-     //  {props.children}
-     //  </NoteContext.Provider>
-     // in the ../context/notes/NoteState.js 
+    const { deleteNote } = context; //useContext is a react hook that is used to consume the context
+    const { note, updateNote } = props; // getting the note and updateNote from the props
     return ( // display the content of the note
         <div className="col-md-3">
             <div className="card my-3">
